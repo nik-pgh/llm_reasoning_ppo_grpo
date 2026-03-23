@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <title>The RL Reasoning Revolution</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <!-- Reveal.js Core -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/white.min.css" id="theme">
+
+  <!-- Custom CSS for Minimal White Tech Aesthetic -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+    :root {
+      --primary: #0055ff;
+      --secondary: #e6005c;
+      --accent: #00a854;
+      --bg: #ffffff;
+      --text: #333333;
+      --box-bg: #f8fafc;
+      --box-border: #e2e8f0;
+    }
+
+    body {
+      background: var(--bg);
+    }
+
+    .reveal {
+      font-family: 'Noto Sans KR', 'Inter', sans-serif;
+      color: var(--text);
+      font-size: 32px;
+      /* Increased font size for better readability */
+    }
+
+    /* Restored Header Hierarchy & Larger Sizes */
+    .reveal h1,
+    .reveal h2,
+    .reveal h3,
+    .reveal h4 {
+      font-family: 'Noto Sans KR', 'Inter', sans-serif;
+      text-transform: none;
+      letter-spacing: -0.02em;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 25px;
+    }
+
+    .reveal h1 {
+      font-size: 1.7em;
+    }
+
+    .reveal h2 {
+      font-size: 1.4em;
+    }
+
+    .reveal h3 {
+      font-size: 1.25em;
+      color: var(--primary);
+    }
+
+    .reveal h4 {
+      font-size: 1.05em;
+      font-weight: 600;
+      color: #444;
+    }
+
+    .reveal h1.title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      font-size: 2.2em;
+    }
+
+    .glass-box {
+      background: var(--box-bg);
+      border: 1px solid var(--box-border);
+      border-radius: 8px;
+      padding: 25px;
+      box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+      margin: 20px 0;
+    }
+
+    .glow-text {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .reveal ul {
+      font-size: 0.9em;
+      margin-left: 1.5em;
+    }
+
+    .reveal ul li {
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .reveal p {
+      font-size: 0.95em;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+
+    .reveal code {
+      font-family: 'JetBrains Mono', monospace;
+      background: #f1f5f9 !important;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      padding: 4px 6px;
+      color: var(--secondary);
+      font-size: 0.85em;
+    }
+
+    /* Fixed Citation: Relative positioning so it never overlaps boxes */
+    .citation {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #64748b;
+      text-align: left;
+      font-weight: 400;
+      border-left: 3px solid var(--primary);
+      padding-left: 12px;
+      line-height: 1.4;
+      background: #f8fafc;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: stretch;
+    }
+
+    .MathJax {
+      font-size: 1.05em !important;
+      color: #0f172a;
+    }
+
+    /* Custom HTML Diagram Blocks */
+    .flow-step {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 0.9em;
+      margin: 8px 0;
+      font-weight: 500;
+    }
+
+    .flow-arrow {
+      font-size: 1.3em;
+      color: #94a3b8;
+      margin: 8px 0;
+      font-weight: bold;
+    }
+
+    .flex-flow {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      flex-wrap: nowrap;
+      white-space: nowrap;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .flex-flow .flow-step {
+      padding: 10px 16px;
+      font-size: 0.8em;
+      margin: 0;
+    }
+
+    .flex-flow .flow-arrow {
+      margin: 0 10px;
+      font-size: 1.1em;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- Title Slide -->
+      <section>
+        <h1 class="title">RL Reasoning Revolution</h1>
+        <h3 style="color: #333;">PPO, GRPO, DeepSeek R1</h3>
+      </section>
+
+      <!-- Section 1: Reasoning as an RL Problem -->
+      <section>
+        <h2>1. 추론을 강화학습(RL)으로 푸는 이유</h2>
+        <p class="glow-text">왜 추론을 지도학습(SFT)으로 가르치려 하면 한계에 부딪히는가?</p>
+      </section>
+
+      <section>
+        <h3>지도학습(SFT)의 한계</h3>
+        <div class="grid-2">
+          <div class="glass-box">
+            <h4>데이터 형태</h4>
+            <div>
+              \[ \mathcal{D}_{SFT} = \{ (x, y_{reasoning}, y_{answer}) \} \]
+            </div>
+            <p style="color: #64748b; margin-top: 15px;">사람이 모든 과정을 직접 적어야 함.</p>
+          </div>
+          <div>
+            <ul style="margin-top: 10px;">
+              <li><b>비용:</b> 사람이 직접 수많은 추론 단계를 라벨링해야 함.</li>
+              <li><b>편향(Human Bias):</b> 인간의 추론 방식이 AI에게 최적은 아님.</li>
+              <li><b>다중 경로:</b> 정답에 이르는 다양한 길 중 무엇을 표준으로 삼을 것인가?</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3>강화학습(RL)의 우회적 접근법</h3>
+        <p>중간 과정은 모델에게 맡기고, <b>최종 결과값(Answer)</b>만 평가.</p>
+        <div class="glass-box">
+          \[ R(y|x) = \begin{cases} 1 & \text{if } y_{ans} == True \\ 0 & \text{otherwise} \end{cases} \]
+        </div>
+
+        <div class="glass-box flex-flow">
+          <div class="flow-step" style="border:2px solid var(--primary);">입력(x)</div>
+          <div class="flow-arrow">&rarr;</div>
+          <div class="flow-step" style="background:#f1f5f9; border:1px dashed #94a3b8;">&lt;think&gt; 자유로운 탐색적 추론</div>
+          <div class="flow-arrow">&rarr;</div>
+          <div class="flow-step" style="border:2px solid var(--primary);">최종 정답</div>
+          <div class="flow-arrow">&rarr;</div>
+          <div class="flow-step" style="background:#f0fdf4; border:2px solid var(--accent); color:var(--accent);">정답 시
+            Reward=1</div>
+        </div>
+      </section>
+
+      <!-- Section 2: GRPO vs PPO -->
+      <section>
+        <h2>2. GRPO vs PPO</h2>
+        <p>보상 최적화</p>
+      </section>
+
+      <section>
+        <h3>RL의 두 가지 목표</h3>
+        <div class="grid-2">
+          <div class="glass-box">
+            <h4>1. 보상 최대화</h4>
+            <div>
+              \[ \max_\theta \mathbb{E}[R] \]
+            </div>
+            <p style="margin-top: 15px;">올바른 답변의 생성 확률을 높임.</p>
+          </div>
+          <div class="glass-box">
+            <h4 style="color:var(--secondary);">2. 기존 지식 유지 (이탈 방지)</h4>
+            <div>
+              \[ - \beta \mathbb{D}_{KL}(\pi_\theta || \pi_{ref}) \]
+            </div>
+            <p style="margin-top: 15px;">원본 베이스 모델에서 너무 벗어나지 않도록 페널티를 부여함.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3>리워드에서 Advantage로</h3>
+        <p>RL의 핵심: <b class="glow-text">마지막 보상을 어떻게 Loss로 바꿀 것인가?</b></p>
+        <div class="grid-2" style="margin-top: 30px;">
+          <div class="glass-box">
+            <h4 style="color:var(--secondary);">리워드의 한계 (절대적 평가)</h4>
+            <div style="font-size: 1.1em; font-weight: 600; margin-bottom: 15px;">맞다 / 틀리다</div>
+            <ul style="color: #475569;">
+              <li>결과값만으로는 <b>얼마나 더 잘했는지</b> 알 수 없음</li>
+              <li>보상을 그대로 <b>Loss</b>로 사용하기 어려움</li>
+            </ul>
+          </div>
+          <div class="glass-box" style="border: 2px solid var(--primary); box-shadow: 0 4px 15px rgba(0,85,255,0.1);">
+            <h4 style="color:var(--primary);">Advantage (상대적 평가)</h4>
+            <div style="font-size: 1.1em; font-weight: 600; margin-bottom: 15px;">기준점 대비 얼마나 더 좋았나?</div>
+            <ul style="color: #475569;">
+              <li>보상을 바탕으로 <b>상대적인 가치</b>를 계산</li>
+              <li>이 Advantage를 통해 모델 웨이트를 업데이트</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3>PPO (Proximal Policy Optimization)</h3>
+        <p>보상을 예상치 대비 얼마나 잘했는가?(Advantage)로 변환.</p>
+        <div class="glass-box">
+          \[ A_t = R_t - V(s_t) \]
+          <ul style="margin-top:20px; list-style-type:none; padding:0; margin-left:0; font-size: 0.95em;">
+            <li><b style="color:var(--primary); display:inline-block; width:75px;">\( R_t \)</b> = t 시점부터의 실제 누적 보상
+              (Return)</li>
+            <li><b style="color:var(--secondary); display:inline-block; width:75px;">\( V(s_t) \)</b> = t 시점에서 예상되는 누적
+              보상</li>
+            <li><b style="color:var(--accent); display:inline-block; width:75px;">\( A_t \)</b> = 실제로 받은 것 - 예상했던 것 =
+              예상보다 얼마나 더 잘했는가</li>
+          </ul>
+        </div>
+        <p style="color:var(--secondary); font-weight:600; margin-top:20px;">문제점: 정책 모델 외에 거대한 Value 모델을 하나 더 메모리에 올려야
+          함.</p>
+      </section>
+
+      <section>
+        <h3>GRPO의 혁신</h3>
+        <p>Value 모델을 <b>완전히 제거</b>하고, <b>그룹 내부 상대평가</b>로 Advantage를 계산함.</p>
+        <div class="glass-box">
+          \[ \hat{A}_i = \frac{r_i - \text{mean}(\{r_1...r_G\})}{\text{std}(\{r_1...r_G\})} \]
+          <p style="margin-top: 20px;">하나의 프롬프트에서 G개의 서로 다른 답변을 생성한 뒤 평균을 기준으로 평가함.</p>
+        </div>
+        <div class="citation">Shao et al. (2024). DeepSeekMath: Pushing the Limits of Mathematical Reasoning.
+          arXiv:2402.03300</div>
+      </section>
+
+      <section>
+        <h3 style="margin-bottom: 30px;">아키텍처 비교</h3>
+        <div class="grid-2" style="transform: scale(0.85); transform-origin: top center; margin-top: 10px;">
+          <div class="glass-box"
+            style="text-align:center; height:100%; box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start; align-items:center; padding: 15px 10px; margin: 10px 0;">
+            <h4 style="color:var(--primary); margin-bottom: 5px; font-size: 1.0em;">PPO</h4>
+            <img src="images/ppo_diagram.png" alt="PPO Diagram"
+              style="width: auto; max-height: 120px; object-fit: contain; margin-bottom: 15px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));">
+            <div class="flow-step"
+              style="border:2px solid var(--primary); width:280px; margin:0 auto; padding:4px 0; font-size: 0.75em; box-sizing:border-box;">
+              Policy Model</div>
+            <div class="flow-arrow" style="margin: 1px 0;">&darr;</div>
+            <div class="flow-step"
+              style="border:1px dashed #94a3b8; width:280px; margin:0 auto; padding:4px 0; font-size: 0.7em; box-sizing:border-box;">
+              o (출력 하나)</div>
+            <div class="flow-arrow" style="margin: 1px 0;">&darr;</div>
+            <div class="flow-step"
+              style="border:2px solid var(--secondary); width:280px; margin:0 auto; padding:4px 0; font-size: 0.7em; box-sizing:border-box;">
+              Value Model로 각 토큰의 가치 추정</div>
+            <div class="flow-arrow" style="margin: 1px 0;">&darr;</div>
+            <div class="flow-step"
+              style="background:#f1f5f9; width:280px; margin:0 auto; padding:4px 0; font-size: 0.7em; box-sizing:border-box;">
+              GAE로 Advantage 계산</div>
+          </div>
+
+          <div class="glass-box"
+            style="text-align:center; height:100%; box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start; align-items:center; padding: 15px 10px; margin: 10px 0; border: 2px solid var(--accent); background: #f0fdf4;">
+            <h4 style="color:var(--accent); margin-bottom: 5px; font-size: 1.0em;">GRPO</h4>
+            <img src="images/grpo_diagram.png" alt="GRPO Diagram"
+              style="width: auto; max-height: 120px; object-fit: contain; margin-bottom: 15px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));">
+            <div class="flow-step"
+              style="border:2px solid var(--primary); width:280px; margin:0 auto; padding:4px 0; font-size: 0.75em; box-sizing:border-box;">
+              Policy Model</div>
+            <div class="flow-arrow" style="margin: 1px 0;">&darr;</div>
+            <div class="flow-step"
+              style="border:1px dashed #94a3b8; width:280px; margin:0 auto; padding:4px 0; font-size: 0.7em; box-sizing:border-box;">
+              G번 샘플링</div>
+            <div class="flow-arrow" style="margin: 1px 0;">&darr;</div>
+            <div class="flow-step"
+              style="border:2px solid var(--accent); width:280px; margin:0 auto; padding:4px 0; font-size: 0.7em; box-sizing:border-box;">
+              G개의 결과 그룹</div>
+            <div class="flow-arrow" style="margin: 1px 0;">&darr;</div>
+            <div class="flow-step"
+              style="background:#f0fdf4; width:280px; margin:0 auto; padding:4px 0; font-size: 0.7em; box-sizing:border-box;">
+              그룹 내 상대평가로 Advantage 계산</div>
+          </div>
+        </div>
+        <div class="citation" style="margin-top: -15px;">DeepSeek-AI (2025). DeepSeek-R1: Incentivizing Reasoning
+          Capability in LLMs via Reinforcement Learning. Nature.</div>
+      </section>
+
+      <section>
+        <h3>손실 함수(Loss) 구조 비교</h3>
+
+        <div class="glass-box" style="padding: 12px 25px; margin-bottom: 10px;">
+          <h4
+            style="color:var(--primary); font-size: 0.95em; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;">
+            PPO Loss</h4>
+          <div style="font-size: 0.95em; margin: 10px 0;">
+            \[ L^{PPO} = \sum_{t=0}^{T-1} \min \left( r_\theta \cdot A_t, \text{clip}(r_\theta, 1 - \epsilon, 1 +
+            \epsilon) \cdot A_t \right) \]
+          </div>
+        </div>
+
+        <div class="glass-box"
+          style="border: 2px solid var(--accent); background: #f0fdf4; padding: 12px 25px; margin-bottom: 15px;">
+          <h4
+            style="color:var(--accent); font-size: 0.95em; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;">
+            GRPO Loss</h4>
+          <div style="font-size: 0.95em; margin: 10px 0;">
+            \[ L^{GRPO} = L^{PPO} - \beta \mathbb{D}_{KL}[\pi_\theta || \pi_{\text{ref}}] \]
+          </div>
+        </div>
+
+        <div style="margin-top: 15px; font-size: 0.85em; text-align: left; padding: 0 10px;">
+          <p style="color: var(--secondary); font-weight: 600; margin-bottom: 15px; text-align: center;">PPO 모델의 구조를
+            차용하되, KL Divergence 페널티를 추가함.</p>
+          <ul style="color: #475569; margin: 0 auto; display: table;">
+            <li style="margin-bottom: 8px;"><b style="color: #1e293b;">Ratio (\( r_\theta \))</b>: 이전 모델 대비 토큰 선택 확률 변화율
+            </li>
+            <li style="margin-bottom: 8px;"><b style="color: #1e293b;">Clipping</b> \( (1-\epsilon, 1+\epsilon) \): 정책이
+              급격하게 변하는 것을 방지</li>
+            <li><b style="color: #1e293b;">KL Divergence</b> \( \mathbb{D}_{KL} \): 범용적인 언어 능력 파괴 방지</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Section 3: Longer Reasoning, Stalled Performance Problem -->
+      <section>
+        <h2>3. Stalled Performance 문제</h2>
+        <p>길어지는 응답 길이와 길이 정규화의 함정</p>
+      </section>
+
+      <section>
+        <h3>응답 토큰 길이가 폭주하는 현상</h3>
+        <p>일정 스텝 이후, 모델이 성능은 그대로인데 응답만 길게 쓰는 패턴을 보임.</p>
+
+        <div style="text-align: center; margin: 25px 0;">
+          <img src="images/length_and_accuracy.png" alt="Length and Accuracy Graph"
+            style="max-height: 480px; width: auto; max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        </div>
+
+        <div class="citation" style="margin-top: 15px;">DeepSeek-AI (2025). DeepSeek-R1: Incentivizing Reasoning
+          Capability in LLMs via Reinforcement Learning. Nature.</div>
+      </section>
+
+      <section>
+        <h3 style="font-size: 1.25em;">원인은 기존 수식의 페널티 구조</h3>
+        <div class="glass-box" style="padding: 15px;">
+          <h4 style="color:var(--secondary); font-size: 0.95em;">전체 GRPO 손실 함수 내 길이 정규화 항</h4>
+          <div
+            style="font-size: 0.9em; margin: 15px 0; background: #fff; border: 1px dashed #cbd5e1; padding: 10px; border-radius: 8px; overflow-x: auto;">
+            \[ \mathcal{J}_{GRPO}(\theta) = \frac{1}{G} \sum_{i=1}^G \color{#e6005c}{\frac{1}{|o_i|}} \sum_{t=1}^{|o_i|}
+            \left[ \min\left( \frac{\pi_\theta(o_{i,t})}{\pi_{ref}(o_{i,t})} \hat{A}_i, \text{clip}(\cdot) \hat{A}_i
+            \right) - \beta \mathbb{D}_{KL} \right] \]
+          </div>
+          <p style="margin-top: 10px; font-size: 0.85em; text-align: left;">
+            위 식에서 볼 수 있듯, 각 토큰이 받는 어드밴티지는 <b style="color:var(--secondary);">1 / |o_i|</b> 에 의해 응답 길이만큼 나누어짐.
+          </p>
+
+          <table
+            style="width:100%; font-size: 0.8em; margin-top: 15px; border-collapse: separate; border-spacing: 0; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center;">
+            <tr style="background: #f1f5f9; color: #334155;">
+              <th style="padding: 10px; border-bottom: 2px solid #cbd5e1;">상황 (동일한 오답)</th>
+              <th style="padding: 10px; border-bottom: 2px solid #cbd5e1;">응답 길이 (|o_i|)</th>
+              <th style="padding: 10px; border-bottom: 2px solid #cbd5e1;">토큰당 감점 폭 (\( A_i / |o_i| \))</th>
+              <th style="padding: 10px; border-bottom: 2px solid #cbd5e1;">모델의 학습 결과</th>
+            </tr>
+            <tr>
+              <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; font-weight:bold;">짧게 쓴 <span
+                  style="color: var(--secondary);">오답</span></td>
+              <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #64748b;">10 토큰</td>
+              <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: var(--secondary); font-weight: bold;">
+                -1.0점 <span style="font-size:0.85em; font-weight:normal;">(강한 페널티)</span></td>
+              <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #475569;">단답형 출력 회피 성향</td>
+            </tr>
+            <tr style="background: #fff0f4;">
+              <td style="padding: 12px; font-weight:bold;">길게 쓴 <span style="color: var(--secondary);">오답</span></td>
+              <td style="padding: 12px; color: #64748b;">100 토큰</td>
+              <td style="padding: 12px; color: #d97700; font-weight: bold;">-0.1점 <span
+                  style="font-size:0.85em; font-weight:normal;">(페널티 희석)</span></td>
+              <td style="padding: 12px; color: var(--secondary); font-weight:bold;">불필요한 응답 길이 연장
+              </td>
+            </tr>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h3 style="margin-bottom: 25px;">해결책: DAPO 와 Dr. GRPO</h3>
+        <div class="grid-2">
+          <div class="glass-box" style="padding: 15px 20px;">
+            <h4 style="color:var(--primary); margin-bottom: 5px;">DAPO 방식</h4>
+            <div style="font-size: 1.2em; margin: 25px 0;">
+              \[ \frac{1}{\sum_{i=1}^G |o_i|} \sum_{i=1}^G \sum_{t=1}^{|o_i|} \]
+            </div>
+            <p style="margin-top:15px; font-size:0.9em; color:#475569;">전체 그룹 길이의 합으로 나누어, 긴 응답과 짧은 응답이 <b>공평한 비중의
+                페널티</b>를 받게 함.</p>
+          </div>
+          <div class="glass-box" style="padding: 15px 20px; border: 2px solid var(--accent); background: #f0fdf4;">
+            <h4 style="color:var(--accent); margin-bottom: 5px;">Dr. GRPO 방식</h4>
+            <div style="font-size: 1.2em; margin: 25px 0;">
+              \[ \frac{1}{G} \sum_{i=1}^G \sum_{t=1}^{|o_i|} \]
+            </div>
+            <p style="margin-top:15px; font-size:0.9em; color:#475569;">개별 답변 길이 정규화를 <b>아예 없애고</b>, 텍스트가 극단적으로 길어질 때만
+              명시적인 감점을 부여함.</p>
+          </div>
+        </div>
+        <div class="citation" style="line-height: 1.6; padding: 10px 15px;">
+          DAPO: An Open-Source LLM Reinforcement Learning System at Scale, Yu et al., 2025.<br>
+          Understanding R1-Zero-Like Training: A Critical Perspective, Liu et al., 2025.
+        </div>
+      </section>
+
+      <!-- Section 4: DeepSeek R1 Pipeline -->
+      <section>
+        <h2>4. 거인을 조립하다: DeepSeek R1</h2>
+        <p>순수 RL의 한계를 극복한 파이프라인</p>
+      </section>
+
+      <section>
+        <h3 style="margin-bottom: 15px;">R1-Zero의 한계</h3>
+        <div class="grid-2">
+          <div class="glass-box" style="display: flex; flex-direction: column; padding: 15px;">
+            <h4 style="color:var(--accent); text-align: center; margin-bottom: 15px;">성공: 추론 벤치마크 평가</h4>
+            <img src="images/rl-zero-benchmark.png" alt="R1-Zero Benchmark Result"
+              style="width: 100%; height: auto; margin: 0 auto; display: block; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+          </div>
+          <div class="glass-box">
+            <h4 style="color:var(--secondary);">실패: 가독성</h4>
+            <p style="margin-top:20px;">순수 강화학습 모델은 정답은 완벽하게 맞히지만 언어를 섞어 쓰고, 포맷이 정리되어 있지 않아 결과물을 인간이 읽기 매우 힘듦 (Language
+              Mixing).</p>
+          </div>
+        </div>
+        <div class="citation" style="margin-top: 25px;">DeepSeek-AI (2025). DeepSeek-R1: Incentivizing Reasoning
+          Capability in LLMs via Reinforcement Learning. Nature.</div>
+      </section>
+
+      <section>
+        <h3>DeepSeek R1 파이프라인</h3>
+        <div class="glass-box" style="font-size: 0.9em; text-align:center;">
+          <div class="flow-step" style="border:2px solid var(--primary); width:380px;">V3 Base</div>
+          <div class="flow-arrow">&darr; <p style="font-size:0.65em; color:#64748b; display:inline;">5k 정제 데이터</p>
+          </div>
+          <div class="flow-step" style="background:#f1f5f9; width:380px;">1. 콜드스타트 SFT (통제된 시작)</div>
+          <div class="flow-arrow">&darr; <p style="font-size:0.65em; color:#64748b; display:inline;">언어 일관성 보상 추가</p>
+          </div>
+          <div class="flow-step"
+            style="background:#f0fdf4; border:2px solid var(--accent); color:var(--accent); width:380px; font-weight:bold;">
+            2. 추론 GRPO</div>
+          <div class="flow-arrow">&darr; <p style="font-size:0.65em; color:#64748b; display:inline;">600k + 200k 고품질 쌍
+            </p>
+          </div>
+          <div class="flow-step" style="background:#f1f5f9; width:380px;">3. 범용 SFT</div>
+          <div class="flow-arrow">&darr; <p style="font-size:0.65em; color:#64748b; display:inline;">모든 지시 태스크 최적화</p>
+          </div>
+          <div class="flow-step"
+            style="background:#fff0f4; border:2px solid var(--secondary); color:var(--secondary); width:380px; font-weight:bold;">
+            4. 종합 GRPO (DeepSeek R1)</div>
+        </div>
+        <p style="text-align:center; font-weight: 600; margin-top:20px;">수학/코딩 추론 능력과 일반 대화 모델 능력을 완벽히 결합.</p>
+      </section>
+
+      <section>
+        <section>
+          <h3 style="margin-bottom: 10px;">Distillation (지식 증류)</h3>
+          <p>작은 모델로 똑똑한 추론 능력을 이식하다.</p>
+
+          <div
+            style="display: flex; justify-content: center; gap: 20px; align-items: stretch; height: 380px; margin: 20px auto;">
+            <!-- Left: HTML Flowchart Box -->
+            <div class="glass-box"
+              style="flex: 0 0 auto; text-align:center; padding: 25px; margin: 0; font-size: 0.7em; display: flex; flex-direction: column; justify-content: center; height: 100%; box-sizing: border-box;">
+              <div class="flow-step"
+                style="border:2px solid var(--primary); padding:10px 20px; width:350px; box-sizing:border-box; color:var(--primary); font-weight:bold; margin:0 auto;">
+                DeepSeek R1 (671B)</div>
+              <div class="flow-arrow" style="margin: 8px 0;">&darr; <br><span
+                  style="font-size:0.8em; color:#64748b; font-weight:normal;">추론 궤적 추출</span></div>
+              <div class="flow-step"
+                style="background:#f1f5f9; width:350px; padding:10px 20px; box-sizing:border-box; margin:0 auto;">고품질
+                CoT 학습 데이터</div>
+              <div class="flow-arrow" style="margin: 8px 0;">&darr; <br><span
+                  style="font-size:0.8em; color:#64748b; font-weight:normal;">SFT 지도학습 전파</span></div>
+              <div class="flow-step"
+                style="border:2px solid var(--secondary); background:#fff0f4; color:var(--secondary); padding:10px 20px; font-weight:bold; width:350px; box-sizing:border-box; margin:0 auto;">
+                Llama / Qwen (7B, 14B)</div>
+            </div>
+
+            <!-- Right: Distillation Images -->
+            <div style="flex: 1; max-width: 480px; display: flex; flex-direction: column; gap: 15px; height: 100%;">
+              <img src="images/distillation_1.png" alt="Distillation Graph 1"
+                style="flex: 1; min-height: 0; width: 100%; height: 100%; object-fit: contain; margin: 0; padding: 10px; box-sizing: border-box; background: #fff; border-radius: 8px; border: 1px solid var(--box-border); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+              <img src="images/distillation_2.png" alt="Distillation Graph 2"
+                style="flex: 1; min-height: 0; width: 100%; height: 100%; object-fit: contain; margin: 0; padding: 10px; box-sizing: border-box; background: #fff; border-radius: 8px; border: 1px solid var(--box-border); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+            </div>
+          </div>
+
+          <p class="glow-text" style="text-align: center; margin-top: 25px;">RL 단계 없이도 SFT만으로 아주 뛰어난 추론 성능을 발휘할 수 있음을
+            증명.</p>
+          <div class="citation" style="margin-top: 10px;">DeepSeek-AI (2025). DeepSeek-R1: Incentivizing Reasoning
+            Capability in LLMs via Reinforcement Learning. Nature.</div>
+        </section>
+
+        <section>
+          <h1 class="title" style="margin-bottom: 30px;">감사합니다</h1>
+        </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.js"></script>
+  <!-- MathJax Plugin for LaTeX equations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/plugin/math/math.min.js"></script>
+
+  <script>
+    Reveal.initialize({
+      hash: true,
+      transition: 'fade',
+      backgroundTransition: 'fade',
+      width: 1100,
+      height: 750,
+      margin: 0.1,
+      // Fixed flat structure (no vertical slides means no arrow-key sub-navigation issues)
+      // MathJax Configuration
+      mathjax3: {
+        mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+        tex: {
+          inlineMath: [['\\(', '\\)']],
+          displayMath: [['\\[', '\\]']]
+        },
+        options: {
+          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+      },
+      plugins: [RevealMath.MathJax3]
+    });
+  </script>
+</body>
+
+</html>
