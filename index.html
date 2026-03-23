@@ -13,16 +13,17 @@
 
   <!-- Custom CSS for Minimal White Tech Aesthetic -->
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&family=Noto+Sans+KR:wght@300;400;500&display=swap');
 
     :root {
-      --primary: #0055ff;
-      --secondary: #e6005c;
-      --accent: #00a854;
+      --primary: #534AB7;
+      --secondary: #993C1D;
+      --accent: #0F6E56;
+      --amber: #854F0B;
       --bg: #ffffff;
-      --text: #333333;
-      --box-bg: #f8fafc;
-      --box-border: #e2e8f0;
+      --text: #444441;
+      --box-bg: #F1EFE8;
+      --box-border: #D4D3CD;
     }
 
     body {
@@ -30,47 +31,50 @@
     }
 
     .reveal {
-      font-family: 'Noto Sans KR', 'Inter', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', 'Inter', sans-serif;
       color: var(--text);
       font-size: 32px;
-      /* Increased font size for better readability */
+      font-weight: 400;
+      letter-spacing: -0.01em;
     }
 
-    /* Restored Header Hierarchy & Larger Sizes */
     .reveal h1,
     .reveal h2,
     .reveal h3,
     .reveal h4 {
-      font-family: 'Noto Sans KR', 'Inter', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', 'Inter', sans-serif;
       text-transform: none;
       letter-spacing: -0.02em;
-      font-weight: 700;
-      color: #111;
+      font-weight: 500;
+      color: #1F1E1D;
       margin-bottom: 25px;
     }
 
     .reveal h1 {
       font-size: 1.7em;
+      font-weight: 600;
     }
 
     .reveal h2 {
       font-size: 1.4em;
+      font-weight: 500;
     }
 
     .reveal h3 {
       font-size: 1.25em;
       color: var(--primary);
+      font-weight: 500;
     }
 
     .reveal h4 {
       font-size: 1.05em;
-      font-weight: 600;
-      color: #444;
+      font-weight: 500;
+      color: #5F5E5A;
     }
 
     .reveal h1.title {
-      font-family: 'Inter', sans-serif;
-      font-weight: 800;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+      font-weight: 600;
       color: var(--primary);
       margin-bottom: 1.5rem;
       font-size: 2.2em;
@@ -78,16 +82,16 @@
 
     .glass-box {
       background: var(--box-bg);
-      border: 1px solid var(--box-border);
+      border: 0.5px solid var(--box-border);
       border-radius: 8px;
       padding: 25px;
-      box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+      box-shadow: none;
       margin: 20px 0;
     }
 
     .glow-text {
       color: var(--primary);
-      font-weight: 600;
+      font-weight: 500;
     }
 
     .reveal ul {
@@ -108,25 +112,25 @@
 
     .reveal code {
       font-family: 'JetBrains Mono', monospace;
-      background: #f1f5f9 !important;
-      border: 1px solid #cbd5e1;
+      background: #F1EFE8 !important;
+      border: 1px solid #D4D3CD;
       border-radius: 4px;
       padding: 4px 6px;
       color: var(--secondary);
       font-size: 0.85em;
+      font-weight: 400;
     }
 
-    /* Fixed Citation: Relative positioning so it never overlaps boxes */
     .citation {
       margin-top: 40px;
-      font-size: 14px;
-      color: #64748b;
+      font-size: 13px;
+      color: #73726C;
       text-align: left;
       font-weight: 400;
-      border-left: 3px solid var(--primary);
+      border-left: 2px solid var(--box-border);
       padding-left: 12px;
       line-height: 1.4;
-      background: #f8fafc;
+      background: transparent;
       padding-top: 8px;
       padding-bottom: 8px;
     }
@@ -139,25 +143,24 @@
     }
 
     .MathJax {
-      font-size: 1.05em !important;
-      color: #0f172a;
+      font-size: 1.0em !important;
+      color: #3D3D3A;
     }
 
-    /* Custom HTML Diagram Blocks */
     .flow-step {
       display: inline-block;
       padding: 12px 24px;
       border-radius: 8px;
       font-size: 0.9em;
       margin: 8px 0;
-      font-weight: 500;
+      font-weight: 400;
     }
 
     .flow-arrow {
       font-size: 1.3em;
-      color: #94a3b8;
+      color: #73726C;
       margin: 8px 0;
-      font-weight: bold;
+      font-weight: 400;
     }
 
     .flex-flow {
@@ -181,6 +184,26 @@
       margin: 0 10px;
       font-size: 1.1em;
     }
+
+    /* Slide number — top right, subtle */
+    .reveal .slide-number {
+      top: 12px;
+      right: 16px;
+      bottom: auto;
+      font-size: 13px;
+      font-weight: 400;
+      color: #D4D3CD;
+      background: transparent;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    /* Navigation arrows — match warm neutral palette */
+    .reveal .controls button {
+      color: #D4D3CD;
+    }
+    .reveal .controls button:hover {
+      color: #73726C;
+    }
   </style>
 </head>
 
@@ -191,7 +214,7 @@
       <!-- Title Slide -->
       <section>
         <h1 class="title">RL Reasoning Revolution</h1>
-        <h3 style="color: #333;">PPO, GRPO, DeepSeek R1</h3>
+        <h3 style="color: #444441;">PPO, GRPO, DeepSeek R1</h3>
       </section>
 
       <!-- Section 1: Reasoning as an RL Problem -->
@@ -208,7 +231,7 @@
             <div>
               \[ \mathcal{D}_{SFT} = \{ (x, y_{reasoning}, y_{answer}) \} \]
             </div>
-            <p style="color: #64748b; margin-top: 15px;">사람이 모든 과정을 직접 적어야 함.</p>
+            <p style="color: #5F5E5A; margin-top: 15px;">사람이 모든 과정을 직접 적어야 함.</p>
           </div>
           <div>
             <ul style="margin-top: 10px;">
@@ -230,11 +253,11 @@
         <div class="glass-box flex-flow">
           <div class="flow-step" style="border:2px solid var(--primary);">입력(x)</div>
           <div class="flow-arrow">&rarr;</div>
-          <div class="flow-step" style="background:#f1f5f9; border:1px dashed #94a3b8;">&lt;think&gt; 자유로운 탐색적 추론</div>
+          <div class="flow-step" style="background:#F1EFE8; border:1px dashed #D4D3CD;">&lt;think&gt; 자유로운 탐색적 추론</div>
           <div class="flow-arrow">&rarr;</div>
           <div class="flow-step" style="border:2px solid var(--primary);">최종 정답</div>
           <div class="flow-arrow">&rarr;</div>
-          <div class="flow-step" style="background:#f0fdf4; border:2px solid var(--accent); color:var(--accent);">정답 시
+          <div class="flow-step" style="background:#E1F5EE; border:2px solid var(--accent); color:var(--accent);">정답 시
             Reward=1</div>
         </div>
       </section>
@@ -268,138 +291,99 @@
       <section>
         <h3>리워드에서 Advantage로</h3>
         <p>RL의 핵심: <b class="glow-text">마지막 보상을 어떻게 Loss로 바꿀 것인가?</b></p>
-        <div class="grid-2" style="margin-top: 30px;">
-          <div class="glass-box">
-            <h4 style="color:var(--secondary);">리워드의 한계 (절대적 평가)</h4>
-            <div style="font-size: 1.1em; font-weight: 600; margin-bottom: 15px;">맞다 / 틀리다</div>
-            <ul style="color: #475569;">
-              <li>결과값만으로는 <b>얼마나 더 잘했는지</b> 알 수 없음</li>
-              <li>보상을 그대로 <b>Loss</b>로 사용하기 어려움</li>
-            </ul>
-          </div>
-          <div class="glass-box" style="border: 2px solid var(--primary); box-shadow: 0 4px 15px rgba(0,85,255,0.1);">
-            <h4 style="color:var(--primary);">Advantage (상대적 평가)</h4>
-            <div style="font-size: 1.1em; font-weight: 600; margin-bottom: 15px;">기준점 대비 얼마나 더 좋았나?</div>
-            <ul style="color: #475569;">
-              <li>보상을 바탕으로 <b>상대적인 가치</b>를 계산</li>
-              <li>이 Advantage를 통해 모델 웨이트를 업데이트</li>
-            </ul>
-          </div>
+        <div style="display: flex; justify-content: center; align-items: center; margin-top: 15px;">
+          <img src="images/reward_to_advantage_flow.svg" alt="Reward to Advantage Flow" style="max-width: 100%; max-height: 55vh; object-fit: contain;">
         </div>
       </section>
 
       <section>
         <h3>PPO (Proximal Policy Optimization)</h3>
-        <p>보상을 예상치 대비 얼마나 잘했는가?(Advantage)로 변환.</p>
-        <div class="glass-box">
+        <div style="text-align: center; margin: 8px 0;">
+          <img src="images/ppo_diagram.png" alt="PPO Diagram"
+            style="max-height: 120px; width: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        </div>
+        <p style="font-size: 0.85em; margin-bottom: 8px;">보상을 예상치 대비 얼마나 잘했는가?(Advantage)로 변환.</p>
+        <div class="glass-box" style="padding: 12px 25px; margin: 8px 0;">
           \[ A_t = R_t - V(s_t) \]
-          <ul style="margin-top:20px; list-style-type:none; padding:0; margin-left:0; font-size: 0.95em;">
-            <li><b style="color:var(--primary); display:inline-block; width:75px;">\( R_t \)</b> = t 시점부터의 실제 누적 보상
-              (Return)</li>
-            <li><b style="color:var(--secondary); display:inline-block; width:75px;">\( V(s_t) \)</b> = t 시점에서 예상되는 누적
-              보상</li>
-            <li><b style="color:var(--accent); display:inline-block; width:75px;">\( A_t \)</b> = 실제로 받은 것 - 예상했던 것 =
-              예상보다 얼마나 더 잘했는가</li>
+          <ul style="margin-top:10px; list-style-type:none; padding:0; margin-left:0; font-size: 0.82em;">
+            <li><b style="color:var(--primary); display:inline-block; width:75px;">\( R_t \)</b> = t 시점부터의 실제 누적 보상 (Return)</li>
+            <li><b style="color:var(--secondary); display:inline-block; width:75px;">\( V(s_t) \)</b> = t 시점에서 예상되는 누적 보상</li>
+            <li><b style="color:var(--accent); display:inline-block; width:75px;">\( A_t \)</b> = 실제로 받은 것 - 예상했던 것 = 예상보다 얼마나 더 잘했는가</li>
           </ul>
         </div>
-        <p style="color:var(--secondary); font-weight:600; margin-top:20px;">문제점: 정책 모델 외에 거대한 Value 모델을 하나 더 메모리에 올려야
-          함.</p>
+        <p style="color:var(--secondary); font-weight:500; margin-top:8px; font-size: 0.85em;">문제점: 정책 모델 외에 거대한 Value 모델을 하나 더 메모리에 올려야 함.</p>
+        <div class="citation">DeepSeek-AI (2025). DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning. Nature.</div>
       </section>
 
       <section>
         <h3>GRPO의 혁신</h3>
+        <div style="text-align: center; margin: 10px 0;">
+          <img src="images/grpo_diagram.png" alt="GRPO Diagram"
+            style="max-height: 140px; width: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        </div>
         <p>Value 모델을 <b>완전히 제거</b>하고, <b>그룹 내부 상대평가</b>로 Advantage를 계산함.</p>
-        <div class="glass-box">
+        <div class="glass-box" style="padding: 15px 25px; margin: 10px 0;">
           \[ \hat{A}_i = \frac{r_i - \text{mean}(\{r_1...r_G\})}{\text{std}(\{r_1...r_G\})} \]
-          <p style="margin-top: 20px;">하나의 프롬프트에서 G개의 서로 다른 답변을 생성한 뒤 평균을 기준으로 평가함.</p>
+          <p style="margin-top: 15px;">하나의 프롬프트에서 G개의 서로 다른 답변을 생성한 뒤 평균을 기준으로 평가함.</p>
         </div>
-        <div class="citation">Shao et al. (2024). DeepSeekMath: Pushing the Limits of Mathematical Reasoning.
-          arXiv:2402.03300</div>
+        <div class="citation">DeepSeek-AI (2025). DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning. Nature.</div>
       </section>
 
       <section>
-        <h3 style="margin-bottom: 30px;">아키텍처 비교</h3>
-        <div class="grid-2" style="transform: scale(0.85); transform-origin: top center; margin-top: 10px;">
-          <div class="glass-box"
-            style="text-align:center; height:100%; box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start; align-items:center; padding: 15px 10px; margin: 10px 0;">
-            <h4 style="color:var(--primary); margin-bottom: 5px; font-size: 1.0em;">PPO</h4>
-            <img src="images/ppo_diagram.png" alt="PPO Diagram"
-              style="width: auto; max-height: 120px; object-fit: contain; margin-bottom: 15px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));">
-            <div class="flow-step"
-              style="border:2px solid var(--primary); width:280px; margin:0 auto; padding:4px 0; font-size: 0.75em; box-sizing:border-box;">
-              Policy Model</div>
-            <div class="flow-arrow" style="margin: 1px 0;">&darr;</div>
-            <div class="flow-step"
-              style="border:1px dashed #94a3b8; width:280px; margin:0 auto; padding:4px 0; font-size: 0.7em; box-sizing:border-box;">
-              o (출력 하나)</div>
-            <div class="flow-arrow" style="margin: 1px 0;">&darr;</div>
-            <div class="flow-step"
-              style="border:2px solid var(--secondary); width:280px; margin:0 auto; padding:4px 0; font-size: 0.7em; box-sizing:border-box;">
-              Value Model로 각 토큰의 가치 추정</div>
-            <div class="flow-arrow" style="margin: 1px 0;">&darr;</div>
-            <div class="flow-step"
-              style="background:#f1f5f9; width:280px; margin:0 auto; padding:4px 0; font-size: 0.7em; box-sizing:border-box;">
-              GAE로 Advantage 계산</div>
-          </div>
-
-          <div class="glass-box"
-            style="text-align:center; height:100%; box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start; align-items:center; padding: 15px 10px; margin: 10px 0; border: 2px solid var(--accent); background: #f0fdf4;">
-            <h4 style="color:var(--accent); margin-bottom: 5px; font-size: 1.0em;">GRPO</h4>
-            <img src="images/grpo_diagram.png" alt="GRPO Diagram"
-              style="width: auto; max-height: 120px; object-fit: contain; margin-bottom: 15px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));">
-            <div class="flow-step"
-              style="border:2px solid var(--primary); width:280px; margin:0 auto; padding:4px 0; font-size: 0.75em; box-sizing:border-box;">
-              Policy Model</div>
-            <div class="flow-arrow" style="margin: 1px 0;">&darr;</div>
-            <div class="flow-step"
-              style="border:1px dashed #94a3b8; width:280px; margin:0 auto; padding:4px 0; font-size: 0.7em; box-sizing:border-box;">
-              G번 샘플링</div>
-            <div class="flow-arrow" style="margin: 1px 0;">&darr;</div>
-            <div class="flow-step"
-              style="border:2px solid var(--accent); width:280px; margin:0 auto; padding:4px 0; font-size: 0.7em; box-sizing:border-box;">
-              G개의 결과 그룹</div>
-            <div class="flow-arrow" style="margin: 1px 0;">&darr;</div>
-            <div class="flow-step"
-              style="background:#f0fdf4; width:280px; margin:0 auto; padding:4px 0; font-size: 0.7em; box-sizing:border-box;">
-              그룹 내 상대평가로 Advantage 계산</div>
-          </div>
+        <h3 style="margin-bottom: 15px;">아키텍처 비교</h3>
+        <div style="display: flex; justify-content: center; align-items: center;">
+          <img src="images/ppo_vs_grpo_advantage_flow.svg" alt="PPO vs GRPO Advantage Flow" style="max-width: 100%; max-height: 65vh; object-fit: contain;">
         </div>
-        <div class="citation" style="margin-top: -15px;">DeepSeek-AI (2025). DeepSeek-R1: Incentivizing Reasoning
-          Capability in LLMs via Reinforcement Learning. Nature.</div>
       </section>
 
       <section>
-        <h3>손실 함수(Loss) 구조 비교</h3>
+        <h3>Trade Off</h3>
+        <div style="display: flex; justify-content: center; align-items: center; margin-top: 15px;">
+          <img src="images/ppo_vs_grpo_token_advantage.svg" alt="PPO vs GRPO Token Advantage" style="max-width: 100%; max-height: 65vh; object-fit: contain;">
+        </div>
+      </section>
 
-        <div class="glass-box" style="padding: 12px 25px; margin-bottom: 10px;">
+      <section>
+        <h3>목적 함수 구조 비교</h3>
+
+        <div class="glass-box" style="padding: 15px 25px; margin-bottom: 15px;">
           <h4
             style="color:var(--primary); font-size: 0.95em; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;">
-            PPO Loss</h4>
+            PPO Objective</h4>
           <div style="font-size: 0.95em; margin: 10px 0;">
-            \[ L^{PPO} = \sum_{t=0}^{T-1} \min \left( r_\theta \cdot A_t, \text{clip}(r_\theta, 1 - \epsilon, 1 +
+            \[ J^{PPO}(\theta) = \sum_{t=0}^{T-1} \min \left( r_\theta \cdot A_t, \text{clip}(r_\theta, 1 - \epsilon, 1 +
             \epsilon) \cdot A_t \right) \]
           </div>
         </div>
 
+        <p style="color: var(--secondary); font-weight: 500; margin-bottom: 15px; text-align: center;">PPO 모델의 구조를 차용</p>
+
+        <div style="font-size: 0.85em; text-align: left; padding: 0 10px;">
+          <ul style="color: #5F5E5A; margin: 0 auto; display: table;">
+            <li style="margin-bottom: 8px;"><b style="color: #3D3D3A;">Ratio (\( r_\theta \))</b>: 이전 모델 대비 토큰 선택 확률 변화율</li>
+            <li style="margin-bottom: 8px;"><b style="color: #3D3D3A;">Clipping</b> \( (1-\epsilon, 1+\epsilon) \): 정책이 급격하게 변하는 것을 방지</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>목적 함수 구조 비교</h3>
+
         <div class="glass-box"
-          style="border: 2px solid var(--accent); background: #f0fdf4; padding: 12px 25px; margin-bottom: 15px;">
+          style="border: 2px solid var(--accent); background: #E1F5EE; padding: 15px 25px; margin-bottom: 15px;">
           <h4
             style="color:var(--accent); font-size: 0.95em; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;">
-            GRPO Loss</h4>
+            GRPO Objective</h4>
           <div style="font-size: 0.95em; margin: 10px 0;">
-            \[ L^{GRPO} = L^{PPO} - \beta \mathbb{D}_{KL}[\pi_\theta || \pi_{\text{ref}}] \]
+            \[ J^{GRPO}(\theta) = J^{PPO}(\theta) - \beta \mathbb{D}_{KL}[\pi_\theta || \pi_{\text{ref}}] \]
           </div>
         </div>
 
-        <div style="margin-top: 15px; font-size: 0.85em; text-align: left; padding: 0 10px;">
-          <p style="color: var(--secondary); font-weight: 600; margin-bottom: 15px; text-align: center;">PPO 모델의 구조를
-            차용하되, KL Divergence 페널티를 추가함.</p>
-          <ul style="color: #475569; margin: 0 auto; display: table;">
-            <li style="margin-bottom: 8px;"><b style="color: #1e293b;">Ratio (\( r_\theta \))</b>: 이전 모델 대비 토큰 선택 확률 변화율
-            </li>
-            <li style="margin-bottom: 8px;"><b style="color: #1e293b;">Clipping</b> \( (1-\epsilon, 1+\epsilon) \): 정책이
-              급격하게 변하는 것을 방지</li>
-            <li><b style="color: #1e293b;">KL Divergence</b> \( \mathbb{D}_{KL} \): 범용적인 언어 능력 파괴 방지</li>
+        <p style="color: var(--secondary); font-weight: 500; margin-bottom: 15px; text-align: center;">KL Divergence 페널티를 추가함</p>
+
+        <div style="font-size: 0.85em; text-align: left; padding: 0 10px;">
+          <ul style="color: #5F5E5A; margin: 0 auto; display: table;">
+            <li style="margin-bottom: 8px;"><b style="color: #3D3D3A;">KL Divergence</b> \( \mathbb{D}_{KL} \): 범용적인 언어 능력 파괴 방지</li>
           </ul>
         </div>
       </section>
@@ -411,8 +395,8 @@
       </section>
 
       <section>
-        <h3>응답 토큰 길이가 폭주하는 현상</h3>
-        <p>일정 스텝 이후, 모델이 성능은 그대로인데 응답만 길게 쓰는 패턴을 보임.</p>
+        <h3>응답 토큰 길이가 계속 길어지는 현상</h3>
+        <p>일정 스텝 이후, 모델이 성능은 정체되는데 응답만 길게 쓰는 패턴을 보임.</p>
 
         <div style="text-align: center; margin: 25px 0;">
           <img src="images/length_and_accuracy.png" alt="Length and Accuracy Graph"
@@ -424,44 +408,25 @@
       </section>
 
       <section>
-        <h3 style="font-size: 1.25em;">원인은 기존 수식의 페널티 구조</h3>
+        <h3 style="font-size: 1.1em; margin-bottom: 10px;">원인은 기존 수식의 페널티 구조</h3>
         <div class="glass-box" style="padding: 15px;">
-          <h4 style="color:var(--secondary); font-size: 0.95em;">전체 GRPO 손실 함수 내 길이 정규화 항</h4>
+          <h4 style="color:var(--secondary); font-size: 0.95em; margin-bottom: 3px;">전체 GRPO 손실 함수 내 길이 정규화 항</h4>
           <div
-            style="font-size: 0.9em; margin: 15px 0; background: #fff; border: 1px dashed #cbd5e1; padding: 10px; border-radius: 8px; overflow-x: auto;">
-            \[ \mathcal{J}_{GRPO}(\theta) = \frac{1}{G} \sum_{i=1}^G \color{#e6005c}{\frac{1}{|o_i|}} \sum_{t=1}^{|o_i|}
+            style="font-size: 0.9em; margin: 15px 0; background: #fff; border: 1px dashed #D4D3CD; padding: 10px; border-radius: 8px; overflow-x: auto;">
+            \[ \mathcal{J}_{GRPO}(\theta) = \frac{1}{G} \sum_{i=1}^G \color{#993C1D}{\frac{1}{|o_i|}} \sum_{t=1}^{|o_i|}
             \left[ \min\left( \frac{\pi_\theta(o_{i,t})}{\pi_{ref}(o_{i,t})} \hat{A}_i, \text{clip}(\cdot) \hat{A}_i
             \right) - \beta \mathbb{D}_{KL} \right] \]
           </div>
           <p style="margin-top: 10px; font-size: 0.85em; text-align: left;">
             위 식에서 볼 수 있듯, 각 토큰이 받는 어드밴티지는 <b style="color:var(--secondary);">1 / |o_i|</b> 에 의해 응답 길이만큼 나누어짐.
           </p>
+        </div>
+      </section>
 
-          <table
-            style="width:100%; font-size: 0.8em; margin-top: 15px; border-collapse: separate; border-spacing: 0; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center;">
-            <tr style="background: #f1f5f9; color: #334155;">
-              <th style="padding: 10px; border-bottom: 2px solid #cbd5e1;">상황 (동일한 오답)</th>
-              <th style="padding: 10px; border-bottom: 2px solid #cbd5e1;">응답 길이 (|o_i|)</th>
-              <th style="padding: 10px; border-bottom: 2px solid #cbd5e1;">토큰당 감점 폭 (\( A_i / |o_i| \))</th>
-              <th style="padding: 10px; border-bottom: 2px solid #cbd5e1;">모델의 학습 결과</th>
-            </tr>
-            <tr>
-              <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; font-weight:bold;">짧게 쓴 <span
-                  style="color: var(--secondary);">오답</span></td>
-              <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #64748b;">10 토큰</td>
-              <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: var(--secondary); font-weight: bold;">
-                -1.0점 <span style="font-size:0.85em; font-weight:normal;">(강한 페널티)</span></td>
-              <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #475569;">단답형 출력 회피 성향</td>
-            </tr>
-            <tr style="background: #fff0f4;">
-              <td style="padding: 12px; font-weight:bold;">길게 쓴 <span style="color: var(--secondary);">오답</span></td>
-              <td style="padding: 12px; color: #64748b;">100 토큰</td>
-              <td style="padding: 12px; color: #d97700; font-weight: bold;">-0.1점 <span
-                  style="font-size:0.85em; font-weight:normal;">(페널티 희석)</span></td>
-              <td style="padding: 12px; color: var(--secondary); font-weight:bold;">불필요한 응답 길이 연장
-              </td>
-            </tr>
-          </table>
+      <section>
+        <h3 style="font-size: 1.1em; margin-bottom: 10px;">리워드 해킹</h3>
+        <div style="display: flex; justify-content: center; align-items: center;">
+          <img src="images/grpo_length_hacking.svg" alt="GRPO Length Hacking" style="max-width: 85%; max-height: 60vh; object-fit: contain;">
         </div>
       </section>
 
@@ -473,15 +438,14 @@
             <div style="font-size: 1.2em; margin: 25px 0;">
               \[ \frac{1}{\sum_{i=1}^G |o_i|} \sum_{i=1}^G \sum_{t=1}^{|o_i|} \]
             </div>
-            <p style="margin-top:15px; font-size:0.9em; color:#475569;">전체 그룹 길이의 합으로 나누어, 긴 응답과 짧은 응답이 <b>공평한 비중의
-                페널티</b>를 받게 함.</p>
+            <p style="margin-top:15px; font-size:0.9em; color:#5F5E5A;">전체 그룹 길이의 합으로 나누어,  모든 토큰이 동일한 1/Σ|o_j| 가중치를 받음.</p>
           </div>
-          <div class="glass-box" style="padding: 15px 20px; border: 2px solid var(--accent); background: #f0fdf4;">
+          <div class="glass-box" style="padding: 15px 20px; border: 2px solid var(--accent); background: #E1F5EE;">
             <h4 style="color:var(--accent); margin-bottom: 5px;">Dr. GRPO 방식</h4>
             <div style="font-size: 1.2em; margin: 25px 0;">
               \[ \frac{1}{G} \sum_{i=1}^G \sum_{t=1}^{|o_i|} \]
             </div>
-            <p style="margin-top:15px; font-size:0.9em; color:#475569;">개별 답변 길이 정규화를 <b>아예 없애고</b>, 텍스트가 극단적으로 길어질 때만
+            <p style="margin-top:15px; font-size:0.9em; color:#5F5E5A;">개별 답변 길이 정규화를 <b>아예 없애고</b>, 텍스트가 극단적으로 길어질 때만
               명시적인 감점을 부여함.</p>
           </div>
         </div>
@@ -493,8 +457,8 @@
 
       <!-- Section 4: DeepSeek R1 Pipeline -->
       <section>
-        <h2>4. 거인을 조립하다: DeepSeek R1</h2>
-        <p>순수 RL의 한계를 극복한 파이프라인</p>
+        <h2>4. DeepSeek R1</h2>
+        <p>RL 추론 파이프라인</p>
       </section>
 
       <section>
@@ -507,7 +471,7 @@
           </div>
           <div class="glass-box">
             <h4 style="color:var(--secondary);">실패: 가독성</h4>
-            <p style="margin-top:20px;">순수 강화학습 모델은 정답은 완벽하게 맞히지만 언어를 섞어 쓰고, 포맷이 정리되어 있지 않아 결과물을 인간이 읽기 매우 힘듦 (Language
+            <p style="margin-top:20px;">순수 강화학습 추론 모델은 추론 성능은 좋아졌지만 포맷이 정리되어 있지 않아 결과물을 인간이 읽기 매우 힘듦 (Language
               Mixing).</p>
           </div>
         </div>
@@ -517,27 +481,28 @@
 
       <section>
         <h3>DeepSeek R1 파이프라인</h3>
-        <div class="glass-box" style="font-size: 0.9em; text-align:center;">
-          <div class="flow-step" style="border:2px solid var(--primary); width:380px;">V3 Base</div>
-          <div class="flow-arrow">&darr; <p style="font-size:0.65em; color:#64748b; display:inline;">5k 정제 데이터</p>
-          </div>
-          <div class="flow-step" style="background:#f1f5f9; width:380px;">1. 콜드스타트 SFT (통제된 시작)</div>
-          <div class="flow-arrow">&darr; <p style="font-size:0.65em; color:#64748b; display:inline;">언어 일관성 보상 추가</p>
-          </div>
-          <div class="flow-step"
-            style="background:#f0fdf4; border:2px solid var(--accent); color:var(--accent); width:380px; font-weight:bold;">
-            2. 추론 GRPO</div>
-          <div class="flow-arrow">&darr; <p style="font-size:0.65em; color:#64748b; display:inline;">600k + 200k 고품질 쌍
-            </p>
-          </div>
-          <div class="flow-step" style="background:#f1f5f9; width:380px;">3. 범용 SFT</div>
-          <div class="flow-arrow">&darr; <p style="font-size:0.65em; color:#64748b; display:inline;">모든 지시 태스크 최적화</p>
-          </div>
-          <div class="flow-step"
-            style="background:#fff0f4; border:2px solid var(--secondary); color:var(--secondary); width:380px; font-weight:bold;">
-            4. 종합 GRPO (DeepSeek R1)</div>
+        <div style="display: flex; justify-content: center; align-items: center; margin-top: 15px;">
+          <img src="images/deepseek_r1_pipeline.svg" alt="DeepSeek R1 Pipeline" style="max-width: 90%; max-height: 65vh; object-fit: contain;">
         </div>
-        <p style="text-align:center; font-weight: 600; margin-top:20px;">수학/코딩 추론 능력과 일반 대화 모델 능력을 완벽히 결합.</p>
+      </section>
+
+      <section>
+        <h3>DeepSeek R1 파이프라인</h3>
+        <p style="font-size: 0.75em; color: #73726C; margin-bottom: 15px;">DeepSeek R1이 시장에 미친 충격</p>
+        <div style="display: flex; justify-content: center; gap: 20px; align-items: stretch; margin-top: 10px;">
+          <div style="flex: 1; max-width: 480px; display: flex; flex-direction: column; align-items: center;">
+            <img src="images/deepseek_news_1.png" alt="DeepSeek News - Guardian"
+              style="width: 100%; max-height: 50vh; object-fit: contain; border-radius: 8px; border: 1px solid var(--box-border); box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+          </div>
+          <div style="flex: 1; max-width: 480px; display: flex; flex-direction: column; align-items: center;">
+            <img src="images/deepseek_news_2.png" alt="DeepSeek News - Forbes"
+              style="width: 100%; max-height: 50vh; object-fit: contain; border-radius: 8px; border: 1px solid var(--box-border); box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+          </div>
+        </div>
+        <div class="citation" style="line-height: 1.6; padding: 10px 15px;">
+          The Guardian (2025). Tech shares in Asia and Europe fall after China AI startup DeepSeek raises questions.<br>
+          Forbes (2025). Why DeepSeek Is Sinking Nvidia Stock.
+        </div>
       </section>
 
       <section>
@@ -551,17 +516,17 @@
             <div class="glass-box"
               style="flex: 0 0 auto; text-align:center; padding: 25px; margin: 0; font-size: 0.7em; display: flex; flex-direction: column; justify-content: center; height: 100%; box-sizing: border-box;">
               <div class="flow-step"
-                style="border:2px solid var(--primary); padding:10px 20px; width:350px; box-sizing:border-box; color:var(--primary); font-weight:bold; margin:0 auto;">
+                style="border:2px solid var(--primary); padding:10px 20px; width:350px; box-sizing:border-box; color:var(--primary); font-weight:500; margin:0 auto;">
                 DeepSeek R1 (671B)</div>
               <div class="flow-arrow" style="margin: 8px 0;">&darr; <br><span
-                  style="font-size:0.8em; color:#64748b; font-weight:normal;">추론 궤적 추출</span></div>
+                  style="font-size:0.8em; color:#73726C; font-weight:normal;">추론 궤적 추출</span></div>
               <div class="flow-step"
-                style="background:#f1f5f9; width:350px; padding:10px 20px; box-sizing:border-box; margin:0 auto;">고품질
+                style="background:#F1EFE8; width:350px; padding:10px 20px; box-sizing:border-box; margin:0 auto;">고품질
                 CoT 학습 데이터</div>
               <div class="flow-arrow" style="margin: 8px 0;">&darr; <br><span
-                  style="font-size:0.8em; color:#64748b; font-weight:normal;">SFT 지도학습 전파</span></div>
+                  style="font-size:0.8em; color:#73726C; font-weight:normal;">SFT 지도학습 전파</span></div>
               <div class="flow-step"
-                style="border:2px solid var(--secondary); background:#fff0f4; color:var(--secondary); padding:10px 20px; font-weight:bold; width:350px; box-sizing:border-box; margin:0 auto;">
+                style="border:2px solid var(--secondary); background:#FAECE7; color:var(--secondary); padding:10px 20px; font-weight:500; width:350px; box-sizing:border-box; margin:0 auto;">
                 Llama / Qwen (7B, 14B)</div>
             </div>
 
@@ -596,6 +561,7 @@
       hash: true,
       transition: 'fade',
       backgroundTransition: 'fade',
+      slideNumber: true,
       width: 1100,
       height: 750,
       margin: 0.1,
